@@ -1,0 +1,52 @@
+
+    <!doctype html>
+
+    <html>
+
+    <head>
+    <title>User Story Manager</title>
+    </head>
+
+    <body>
+        <h1>User Story Manager</h1>
+    <table border='1'>
+        <thead>
+        <tr><th colspan="7">User Story Manager</th></tr>
+        <tr><th>Story ID</th><th>Story Title</th>
+            <th>User Story</th><th>Acceptance Criteria</th>
+            <th>Business Value</th><th>Estimation</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+    <tr>
+<td>1</td><td>System / Handle new application</td><td>As an Administrator,
+I want to automate the process of incoming applications
+So that I can save some time (of manual work).</td><td>Given that there is a new applicant in the "applicants" db table
+  And it has no application code and school yet
+When the system detects this new entry
+Then ensure the program assigns a generated application code for the applicant
+  And ensure the program finds the closest school based on the city (using the City model)
+  And ensure these new values are saved to the Applicant.</td><td>1000</td><td>0.5</td><td>Done</td></tr>
+<tr>
+<td>2</td><td>System / Find possible interview date</td><td>"As an Administrator,
+I want to automate the process of scheduling interviews
+So that I can save some time (of manual work)."</td><td>"Given that there is a new applicant in the ""applicants"" db table
+  And it has no scheduled interview yet
+When the system detects this entry
+Then ensure the program finds a possible interview date based on the availability of mentors (using the InterviewSlot model)
+  And ensure the program saves a new Interview with all necessary data
+  And reserves the selected interview slot of the mentor, so others cannot re-reserve it (and cause conflict)."</td><td>100</td><td>0.5</td><td>Done</td></tr>
+<tr>
+<td>3</td><td>Applicant view / Application</td><td>"As an Applicant,
+I want to see the details of my application
+So that I can be informed about my evaluation."</td><td>"As an Applicant,
+I want to see the details of my application
+So that I can be informed about my evaluation."</td><td>700</td><td>0.5</td><td>Done</td></tr>
+</tbody>
+
+    </table>
+    </body>
+    </html>
+    
