@@ -37,3 +37,12 @@ class UserStory(BaseModel):
                      element.business_value, element.estimation, element.story_status]
             userstory_list.append(list1)
         return userstory_list
+
+    @classmethod
+    def get_userstory(cls, story_id):
+        list1 = []
+        r = cls.select().where(cls.id == story_id)
+        for element in r:
+            list1 = [element.id, element.story_title, element.user_story, element.acceptance_criteria,
+                     element.business_value, element.estimation, element.story_status]
+        return list1

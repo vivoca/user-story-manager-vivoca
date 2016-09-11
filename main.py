@@ -5,6 +5,11 @@ from flask import *
 app = Flask(__name__)
 
 
+@app.route('/home')
+def home():
+    return render_template("home.html")
+
+
 # Adding new story
 @app.route('/story', methods=['GET', 'POST'])
 def story():
@@ -21,61 +26,34 @@ def story():
 
 
 # Editing an existing story
-@app.route('/story/<story_id>')
-def story_edit():
-    pass
+@app.route('/story/<story_id>', methods=['GET', 'POST'])
+def story_edit(story_id):
+    if request.method == 'GET':
+        status_list = Status.get_status_list()
+        data_list = UserStory.get_userstory(story_id)
+        return render_template("edit.html", data_list=data_list, status_list=status_list)
+    elif request.method == 'POST':
+        columns = ["title", "story", "criteria", "value", "estimation", "status"]
+        a = [request.form[element] for element in columns]
+        q = UserStory.update(story_title=a[0], user_story=a[1], acceptance_criteria=a[2], business_value=a[3],
+                             estimation=a[4], story_status=a[5]).where(UserStory.id == story_id)
+        q.execute()
+        return redirect(url_for('story_list'))
 
 
+# Listing the already added data
 @app.route('/list')
+@app.route('/')
 def story_list():
-    adding_table_to_html()
-    return render_template("list.html")
+    userstory_list = UserStory.select()
+    return render_template("list.html", userstory_list=userstory_list)
 
 
-def print_table():
-    l = UserStory.get_userstory_list()
-    html = """
-    <!doctype html>
-
-    <html>
-
-    <head>
-    <title>User Story Manager</title>
-    </head>
-
-    <body>
-        <h1>User Story Manager</h1>
-    <table border='1'>
-        <thead>
-        <tr><th colspan="7">User Story Manager</th></tr>
-        <tr><th>Story ID</th><th>Story Title</th>
-            <th>User Story</th><th>Acceptance Criteria</th>
-            <th>Business Value</th><th>Estimation</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-
-        <tbody>
-    """
-    for i in l:
-        html += ('<tr>\n')
-        for j in range(7):
-            html += (('<td>') + str(i[j]) + ('</td>'))
-        html += ('</tr>\n')
-    html += """</tbody>
-
-    </table>
-    </body>
-    </html>
-    """
-    return html
-
-
-def adding_table_to_html():
-    html = print_table()
-    html_file = open("templates/list.html", "w")
-    html_file.write(html)
-    html_file.close
+@app.route('/story/delete/<story_id>')
+def delete_story(story_id):
+    q = UserStory.delete().where(UserStory.id == story_id)
+    q.execute()
+    return redirect(url_for('story_list'))
 
 
 if __name__ == '__main__':
