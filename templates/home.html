@@ -3,10 +3,26 @@
 <html>
 <head>
     <title>User Story Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Menu</h1>
-    <p><button type="button"><a href="/story" style="text-decoration: none">Add new story</a></button></p>
-    <p><button type="button"><a href="/list" style="text-decoration: none">List user stories</a></button></p>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar">
+    <ul class="nav nav-pills" role="tablist">
+      <li class="active"><a href="/home">Home</a></li>
+      <li><a href="/story">New Story</a></li>
+      <li><a href="/list">Stories</a></li>
+    </ul>
+    </div>
+    </nav>
+
+    <div>
+        <h1 id="hometext">An app to store your team's process through sprints and represent it to your client.<h1>
+    </div>
 </body>

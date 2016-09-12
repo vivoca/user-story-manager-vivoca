@@ -3,30 +3,62 @@
 <html>
 
 <head>
-<title>Edit story</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Adding new story</title>
+    <link href="/static/css/style.css" rel="stylesheet"
 </head>
 
 <body>
-<h2>User Story Manager - Edit story</h2>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar">
+    <ul class="nav nav-pills" role="tablist">
+      <li><a href="/home">Home</a></li>
+      <li class="active"><a href="/story">New Story</a></li>
+      <li><a href="/list">Stories</a></li>
+    </ul>
+</div>
+</nav>
+
+<div class="container">
+<h2>User Story Manager - Adding new story</h2>
 <form method="POST">
 
-<p>Story Title</p>
-<p><input name="title" value={{ data_list[1] }}></p>
+<div class="form-group">
+<label for="title">Story Title</label>
+<textarea name="title" rows="1" class="form-control" aria-describedby="basic-addon1" required>{{ data_list[1] }}</textarea>
+</div>
 
-<p>User Story</p>
-<p><textarea rows="7" cols="70" name="story">{{ data_list[2] }}</textarea></p>
+<div class="form-group">
+<label for="story">User Story</label>
+<textarea name="story" rows="5" class="form-control text-justify" aria-describedby="basic-addon1" required>{{ data_list[2] }}</textarea>
+</div>
 
-<p>Acceptance Criteria</p>
-<p><textarea rows="7" cols="70" name="criteria">{{ data_list[3] }}</textarea></p>
+<div class="form-group">
+<label for="story">Acceptance Criteria</label>
+<textarea name="criteria" rows="8" class="form-control text-justify" aria-describedby="basic-addon1" required>{{ data_list[3] }}</textarea>
+</div>
 
-<p>Business Value</p>
-<input type="number" name="value" value={{ data_list[4] }} min="100" max="1500", step="100">
+<div class="input-group col-lg-4">
+<label for="value"></label>
+<span class="input-group-addon" id="basic-addon1">Value</span>
+<input name="value" type="number" class="form-control" aria-describedby="basic-addon1" value={{ data_list[4] }} min="100" max="1500" step="100"/>
+<span class="input-group-addon">$</span>
+</div></br>
 
-<p>Estimation</p>
-<input type="number" name="estimation" value={{ data_list[5] }} min="0.5" max="40", step="0.5">
+<div class="input-group col-lg-4">
+<label for="estimation"></label>
+<span class="input-group-addon" id="basic-addon1">Estimation</span>
+<input name="estimation" type="number" class="form-control" aria-describedby="basic-addon1" value={{ data_list[5] }} min="0.5" max="40" step="0.5"/>
+<span class="input-group-addon">h</span>
+</div></br>
 
-<p>Status</p>
-<select name="status" >
+<div class="input-group">
+<label for="status">Status</label>
+<select name="status" class="form-control" required>
     {% for status in status_list %}
     {% if status == data_list[6] %}
     <option selected value={{ status }}>{{ status }}</option>
@@ -35,9 +67,4 @@
     {% endif %}
     {% endfor %}
 </select>
-
-<p><input type="submit" value="Update"></p>
-
-</form>
-</body>
-</html>
+</div></br>

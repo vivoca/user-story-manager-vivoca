@@ -1,19 +1,35 @@
 <!doctype html>
 
-<html>
+<html lang="en">
 
 <head>
-<title>User Story Manager</title>
+    <title>User Story Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/static/css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar">
+    <ul class="nav nav-pills" role="tablist">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/story">New Story</a></li>
+      <li class="active"><a href="/list">Stories</a></li>
+    </ul>
+    </div>
+    </nav>
 
+    <div class="container">
     <h1>User Story Manager</h1>
     <p><button type="button"><a href="/story" style="text-decoration: none">Add new story</a></button></p>
 
-<table border='1'>
+<table class="table table-bordered">
     <thead>
-    <tr><th colspan="9">User Story Manager</th></tr>
     <tr><th>Story ID</th><th>Story Title</th>
         <th>User Story</th><th>Acceptance Criteria</th>
         <th>Business Value</th><th>Estimation</th>
@@ -26,7 +42,12 @@
             <tr><td>{{ element.id }}</td><td>{{ element.story_title }}</td><td>{{ element.user_story }}</td>
                 <td>{{ element.acceptance_criteria }}</td><td>{{ element.business_value }}</td>
                 <td>{{ element.estimation }}</td><td>{{ element.story_status }}</td>
-                <td><a href="story/{{ element.id}}">Edit</a></td>
-                <td><a href="story/delete/{{ element.id}}">Delete</a></td>
+                <td><a href="story/{{ element.id}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                <td><a href="story/delete/{{ element.id}}"><span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
         {% endfor %}
+    </tbody>
+</table>
+</div>
+</body>
+</html>
